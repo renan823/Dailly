@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block Title %}Home{% endblock %}
+{% block content %}
+
+    <a href="{{ url_for('user') }}">Perfil</a>
+    <div>
+        <form action="#" method="post">
+            <label>Título: </label>
+            <input type="text" required name="title"><br>
+            <label>Texto: </label>
+            <textarea required name="text"></textarea><br>
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/getPosts.js') }}"></script>
+
+{% endblock %}
