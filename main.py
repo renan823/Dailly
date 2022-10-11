@@ -128,9 +128,10 @@ def home():
 def logout():
     session.pop("user", None)
     session.pop("password", None)
+
     return redirect(url_for("login"))
 
-@app.route("/makepost/", methods=['POST'])
+@app.route("/post/new/", methods=['POST'])
 def make():
     req = request.get_json(force=True)
     date = datetime.now()
@@ -153,12 +154,12 @@ def make():
 def search():
     req = request.get_json(force=True)
     resultUsers = getUsers(req)
+
     return make_response(jsonify({"users": resultUsers}), 200)
 
 @app.route("/follower/", methods=['POST'])
 def follower():
     req = request.get_json(force=True)
-
 
     newFollow = follow(session["id"], req["user"])
     db.session.add(newFollow)
@@ -173,6 +174,10 @@ def getUserFollowers():
 
     return make_response(jsonify({"followers": followers, "following": following, "status": "OK"}), 200)
 
+@app.route("/post/get/", methods=['POST'])
+def getPosts():
+    print("hi")
+    return make_response(jsonify({"msg": "Post publicado!", "status": "OK"}), 200)
 
 #debug mode-----------------------------------------------------------------
 if __name__ == '__main__':
