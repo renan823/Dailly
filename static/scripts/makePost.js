@@ -5,19 +5,12 @@ form.addEventListener("submit", (e)=>{
     e.preventDefault()
     title = inputTitle.value
     text = inputText.value
-    if(text.trim().length == 0 || title.trim().length == 0){
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Preencha os campos!',
-        })
-    }
-    else{
+    if(!text.trim().length == 0 || !title.trim().length == 0){
         let data = {
             title: title,
             text: text
         }
-        fetch("/makepost/", {
+        fetch("/post/new/", {
             "method": "POST",
             "body": JSON.stringify(data),
             "cache": "no-cache",
@@ -44,4 +37,5 @@ form.addEventListener("submit", (e)=>{
             inputText.value = ""
         })
     }
+    
 })
