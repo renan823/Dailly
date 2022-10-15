@@ -55,18 +55,28 @@ def countFollowers(user):
 def countFollowing(user):
     return follow.query.filter_by(user=user).count()
 
+def countPosts(user):
+    return make_post.query.filter_by(user=user).count()
+
 def searchUser(name):
     search = "%{}%".format(name)
     return users.query.filter(users.name.like(search)).all()
 
+def getUserName(user):
+    user = users.query.filter_by(_id = user).first()
+    return user.name
+
 def getFollowers(user):
     return follow.query.filter_by(user=user).all()
+
+def getFollowing(user):
+    return follow.query.filter_by(follower=user).all()
 
 def getUsers(req):
     users = searchUser(req["name"])
 
     resultFollowers = []
-    followers = getFollowers(session["id"])
+    followers = getFollowing(session["id"])
     for follower in followers:
         resultFollowers.append(follower)
 
@@ -81,6 +91,30 @@ def getUsers(req):
             if flag:
                 resultUsers.append({"name": user.name, "_id": user._id, })
     return resultUsers
+
+def getPostsByUser(user):
+    postList = []
+    preResult = make_post.query.filter_by(user=user).all()
+    for result in preResult:
+        user = getUserName(result.user)
+        post = posts.query.filter_by(_id = result._id).first()
+        postList.append({"title": post.title, "text": post.text, "user": user})
+    return postList
+
+def getAllPosts():
+    resultFollowers = []
+    followers = getFollowers(session["id"])
+    for follower in followers:
+        resultFollowers.append(follower)
+
+    resultPosts = []
+    
+    for follower in resultFollowers:
+        posts = getPostsByUser(follower.follower)
+        if len(posts) != 0:
+            resultPosts.append(posts)
+    return resultPosts
+
 
 #routes---------------------------------------------------------------------
 @app.route("/", methods=['POST', 'GET'])
@@ -115,10 +149,11 @@ def user():
         user["name"] = session["user"]
         user["followers"] = countFollowers(session["id"])
         user["following"] = countFollowing(session["id"])
+        user["posts"] = countPosts(session["id"])
         return render_template('users.html', user=user)
     return redirect(url_for("login"))
 
-@app.route("/home/", methods=['POST', 'GET'])
+@app.route("/home/", methods=['GET'])
 def home():
     if "user" in session:
         return render_template('index.html')
@@ -171,13 +206,13 @@ def follower():
 def getUserFollowers():
     followers = countFollowers(session["id"])
     following = countFollowing(session["id"])
+    posts = countPosts(session["id"])
 
-    return make_response(jsonify({"followers": followers, "following": following, "status": "OK"}), 200)
+    return make_response(jsonify({"followers": followers, "following": following, "posts": posts,"status": "OK"}), 200)
 
 @app.route("/post/get/", methods=['POST'])
 def getPosts():
-    print("hi")
-    return make_response(jsonify({"msg": "Post publicado!", "status": "OK"}), 200)
+    return make_response(jsonify({"posts": getAllPosts(), "status": "OK"}), 200)
 
 #debug mode-----------------------------------------------------------------
 if __name__ == '__main__':
