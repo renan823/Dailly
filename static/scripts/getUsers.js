@@ -22,6 +22,7 @@ input.addEventListener("keyup", ()=>{
                 let user = users[i]
 
                 let box = document.createElement("div")
+                box.classList.add("user")
 
                 let userName = document.createElement("h4")
                 userName.innerText = user.name
