@@ -1,16 +1,228 @@
+@font-face {
+    font-family: title;
+    src: url("PatrickHand-Regular.ttf");
+}
+
+:root{
+    --mainTone: rgb(45, 23, 184);
+}
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
 h1{
     color: blue
 }
 
-.box{
-    display: block;
-    margin-top: 200px;
-    width: 250px;
-    height: 300px;
-    background-color: beige;
+fieldset{
+    border: none;
+    width: 100%;
 }
 
-body{
-    display: flex;
-    flex-direction: collumn;
+label{
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
+input, textarea{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+a{
+    text-decoration: none;
+}
+
+table, tr{
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+td, th{
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    margin: 15px;
+    padding: 5px
+}
+
+
+.main-title{
+    font-family: title;
+    font-size: 50px;
+    font-weight: bold;
+    color: var(--mainTone);
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
+.link-perfil{
+    color: var(--mainTone);
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-self: center;
+    margin: 15px;
+}
+
+.post-form{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+    padding: 10px;
+}
+
+.post-input{
+    width: 94%;
+    padding: 5px;
+    height: 20px;
+    align-self: center;
+}
+
+.post-text{
+    width: 94%;
+    margin-top: 10px;
+    padding: 5px;
+    height: 40px;
+    align-self: center;
+}
+
+.post-button{
+    background-color: var(--mainTone);
+    border: 2px solid var(--mainTone);
+    border-radius: 5px;
+    width: 40%;
+    height: 40px;
+    color: white;
+    font-weight: bolder;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.separator{
+    width: 10px;
+    align-self: center;
+    height: 10px;
+    border-radius: 360px;
+    background-color: var(--mainTone);
+    border: none;
+    margin: 25px;
+}
+
+.posts{
+    overflow-y: scroll;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.loading-text{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.user-name{
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.box{
+    width: 100%;
+    background-color: var(--mainTone);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+}
+
+.link-logout{
+    color: white;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    align-self: center;
+    margin: 15px;
+}
+
+.search-form{
+    margin: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+}
+
+.search-input{
+    width: 90%;
+    height: 30px;
+    padding: 5px;
+}
+
+.user{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 2px;
+    align-items: center;
+    align-self: center;
+    background-color: var(--mainTone);
+    margin-top: 15px;
+}
+
+.user button{
+    width: 30%;
+    height: 30px;
+    border: none;
+    background-color: white;
+    font-weight: bold;
+    color: var(--mainTone)
+}
+
+.user h4{
+    width: 60%;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: white;
+    font-weight: bold;
+}
+
+.post{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    padding: 10px;
+    align-self: center;
+    margin-top: 30px;
+    border: 1px solid black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.post h5{
+    margin: 0;
+    padding: 0;
+    color: var(--mainTone);
+    font-weight: bolder;
+}
+
+.post h2{
+    margin: 2px;
+    font-weight: bolder;
+}
+
+.post p{
+    margin: 15px;
+}
+
