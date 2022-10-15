@@ -14,10 +14,12 @@ window.onload = ()=>{
         })
         .then(data=>{
             let followers = document.querySelector("#followers")
-            followers.innerText = "Seguidores: " + data.followers
+            followers.innerText = data.followers
 
             let following = document.querySelector("#following")
-            following.innerText = "Seguindo: " + data.following
+            following.innerText = data.following
+
+            console.log(data.posts)
         })
     }, 5000)
 }
