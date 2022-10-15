@@ -1,17 +1,20 @@
 {% extends "base.html" %}
-{% block Title %}Home{% endblock %}
+{% block title %}Home{% endblock %}
 {% block content %}
 
-    <a href="{{ url_for('user') }}">Perfil</a>
-    <div>
-        <form action="#" method="post">
-            <label>Título: </label>
-            <input type="text" required name="title"><br>
-            <label>Texto: </label>
-            <textarea required name="text"></textarea><br>
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
+    <a class="link-perfil"  href="{{ url_for('user') }}">Ver Perfil</a>
+    <form action="#" method="post" class="post-form">
+        <fieldset>
+            <input class="post-input" type="text" name="title" id="title" maxlength="30" placeholder="Um título legal"><br>
+        </fieldset>
+        <fieldset>
+            <textarea class="post-text" name="text" id="text" placeholder="Descreva seu dia..."></textarea><br>
+        </fieldset>
+        <button class="post-button" type="submit">Postar</button>
+    </form>
+    <hr class="separator">
+    <div id="posts" class="posts"></div>
+    <script src="{{ url_for('static', filename='scripts/makePost.js') }}"></script>
     <script src="{{ url_for('static', filename='scripts/getPosts.js') }}"></script>
 
 {% endblock %}
